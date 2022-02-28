@@ -121,7 +121,10 @@ def train(
             )
         raise e
     finally:
-        finalize_logger()
+        finalize_logger({
+            "output_path_last": str(output_path / DIR_MODEL_LAST),
+            "output_path_best": str(output_path / DIR_MODEL_BEST),
+        })
         if output_path is not None:
             save_checkpoint(False)
     # This will only run if we did't hit an error
